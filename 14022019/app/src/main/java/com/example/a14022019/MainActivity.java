@@ -3,11 +3,8 @@ package com.example.a14022019;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -22,8 +19,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
-    SearchView search;
-    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,28 +33,8 @@ public class MainActivity extends AppCompatActivity
             personen[i] = persons[i].toString();
         }
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, personen);
+        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, personen);
         v1.setAdapter(adapter);
-
-        search = findViewById(R.id.search);
-
-
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-                                      {
-                                          @Override
-                                          public boolean onQueryTextSubmit(String query)
-                                          {
-                                              return false;
-                                          }
-
-                                          @Override
-                                          public boolean onQueryTextChange(String newText)
-                                          {
-                                              adapter.getFilter().filter(newText);
-                                              return true;
-                                          }
-                                      });
-
 //        SearchView searchView = item.get
 //        AssetManager.AssetInputStream
 //        try (BufferedReader in = new BufferedReader(new FileReader("customers_data.csv")))
